@@ -18,16 +18,7 @@ export class AppComponent {
   constructor(private todoDataService: TodoDataService) {
   }
 
-  // Service is now available as this.todoDataService
-  onToggleTodoComplete(todo) {
-    this.todoDataService
-      .toggleTodoComplete(todo)
-      .subscribe(
-        (updatedTodo) => {
-          todo = updatedTodo;
-        }
-      );
-  }
+  
  
   public ngOnInit() {
     this.todoDataService
@@ -42,23 +33,5 @@ export class AppComponent {
 
   
 
-  onAddTodo(todo) {
-    this.todoDataService
-      .addTodo(todo)
-      .subscribe(
-        (newTodo) => {
-          this.todos = this.todos.concat(newTodo);
-        }
-      );
-      }
-
-      onRemoveTodo(todoId) {
-        this.todoDataService
-          .deleteTodoById(todoId)
-          .subscribe(
-            (_) => {
-              this.todos = this.todos.filter((t) => t.id !== todoId);
-            }
-          );
-      }
+  
 }

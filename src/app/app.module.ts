@@ -10,6 +10,7 @@ import { DetailsComponent } from './details/details.component';
 import {RouterModule} from '@angular/router';
 import { EmptyComponent } from './empty/empty.component';
 import { TreeviewModule} from '../lib';
+import { TodoListMainComponent } from './todo-list-main/todo-list-main.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TreeviewModule} from '../lib';
     TodoListHeaderComponent,
     TodoListComponent,
     DetailsComponent,
-    EmptyComponent
+    EmptyComponent,
+    TodoListMainComponent
   ],
  
   providers: [ ],
