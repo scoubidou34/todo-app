@@ -11,6 +11,8 @@ import {RouterModule} from '@angular/router';
 import { EmptyComponent } from './empty/empty.component';
 import { TreeviewModule} from '../lib';
 import { TodoListMainComponent } from './todo-list-main/todo-list-main.component';
+import { TodoDataService } from './todo-data.service';
+import { View3DModule } from './view3-d/view3-d.module';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { TodoListMainComponent } from './todo-list-main/todo-list-main.component
     AppRoutingModule,
     RouterModule,
     TreeviewModule.forRoot(),
-    FormsModule
+    FormsModule,
+    View3DModule
   ],
   declarations: [
     AppComponent,
@@ -31,7 +34,7 @@ import { TodoListMainComponent } from './todo-list-main/todo-list-main.component
     TodoListMainComponent
   ],
  
-  providers: [ ],
+  providers: [TodoDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import {TodoDataService} from '../todo-data.service';
   selector: 'app-todo-list-main',
   templateUrl: './todo-list-main.component.html',
   styleUrls: ['./todo-list-main.component.css'],
-  providers: [TodoDataService]
+  providers: []
 })
 export class TodoListMainComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class TodoListMainComponent implements OnInit {
       .getAllTodos()
       .subscribe(
         (todosQ) => {
-          this.todos = Array.from(todosQ);
+          this.todos = Array.from(todosQ);          
         }
       );
   }
@@ -31,7 +31,8 @@ export class TodoListMainComponent implements OnInit {
       .addTodo(todo)
       .subscribe(
         (newTodo) => {
-          this.todos = this.todos.concat(newTodo);
+          this.todos = this.todos.concat(newTodo);  
+          this.todoDataService.updateFromList(this.todos);
         }
       );
       }
@@ -52,6 +53,7 @@ export class TodoListMainComponent implements OnInit {
           .subscribe(
             (_) => {
               this.todos = this.todos.filter((t) => t.id !== todoId);
+              this.todoDataService.updateFromList(this.todos);
             }
           );
       }

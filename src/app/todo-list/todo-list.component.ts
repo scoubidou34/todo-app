@@ -17,7 +17,8 @@ export class TodoListComponent implements OnInit {
   @Output()
   remove : EventEmitter<number> = new EventEmitter();
 
-  constructor(private todoDataService: TodoDataService) { }
+  constructor(private todoDataService: TodoDataService)
+   { }
 
   
   ngOnInit() {

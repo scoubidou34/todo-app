@@ -10,6 +10,8 @@ import {Todo} from '../todo';
 })
 export class DetailsComponent implements OnInit 
 {
+
+
     items: TreeviewItem[]=[];
     child : TreeviewItem[]=[];
     config = TreeviewConfig.create({
@@ -21,12 +23,13 @@ export class DetailsComponent implements OnInit
     });
    
 
-    m_todoDataService : TodoDataService;
-  constructor(private todoDataService: TodoDataService) {this.m_todoDataService=todoDataService; }
+    
+  constructor(private todoDataService: TodoDataService)
+   { }
 
   ngOnInit() 
   {
-    const obs= this.m_todoDataService.getAllTodos();
+    const obs= this.todoDataService.getAllTodos();
     const root=new TreeviewItem({text:'root',value:0});
     
 

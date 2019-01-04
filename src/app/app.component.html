@@ -2,9 +2,13 @@
   <nav>
     <a routerLink="/todolist" routerLinkActive="active">todoList</a>
     <a routerLink="/tree" routerLinkActive="active">tree</a>
+    <a routerLink="/3d" routerLinkActive="active">3d</a>
   </nav>
   
   <div class="item">
       <router-outlet></router-outlet>
   </div>
 </section>
+<footer class="footer" *ngIf="todos.length > 0">
+  <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+</footer>

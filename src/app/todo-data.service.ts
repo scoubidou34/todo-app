@@ -1,41 +1,49 @@
-import { Injectable,Output,EventEmitter } from '@angular/core';
+import { Injectable,Output,EventEmitter} from '@angular/core';
 import { Todo } from './todo';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
-@Injectable({
-  providedIn: 'root'
-})
+import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
+@Injectable()
 export class TodoDataService {
 
  
-  
-  // Placeholder for last id so we can simulate
-  // automatic incrementing of ids
-  lastId: number = 0;
-
-  // Placeholder for todos
+  private subject = new Subject<any>();
   todos: Todo[] = [];
-
-  @Output()
-  listChanged: EventEmitter<null> = new EventEmitter();
   constructor(private api: ApiService) {
+  
   }
 
+  
+  getListChangedEmitter() :Observable<any>  {
+    return this.subject.asObservable();
+  }
   // Simulate POST /todos
   addTodo(todo: Todo): Observable<Todo> {
-    this.listChanged.emit(null);
-    return this.api.createTodo(todo);
+
+    let res=this.api.createTodo(todo);   
+    
+    return res;
+  }
+
+  updateFromList(_todos : Todo [])
+  {
+    this.todos= Array.from(_todos);       
+    this.subject.next();
+
   }
 
   // Simulate DELETE /todos/:id
   deleteTodoById(id: number): Observable<Todo> {
-    this.listChanged.emit(null);
-    return this.api.deleteTodoById(id);
+    let res=this.api.deleteTodoById(id);
+    this.subject.next();
+    return res;
   }
 
   // Simulate PUT /todos/:id
   updateTodo(todo: Todo): Observable<Todo> {
-    this.listChanged.emit(null);
+    this.subject.next();
     return this.api.updateTodo(todo);
   }
 
